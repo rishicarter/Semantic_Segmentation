@@ -1,6 +1,5 @@
 from fastai.vision.all import *
 import streamlit as st
-from pathlib import Path
 from PIL import Image
 
 color_map={
@@ -20,7 +19,7 @@ def load_segimg_from_model(picture):
     # def label_fn(fn): 
     #     return path/'semantics'/f'{fn.stem}{fn.suffix}'
     tfms = [Resize(224), IntToFloatTensor(),Normalize()]
-    learn0 = load_learner('.\models\model_3.pkl')
+    learn0 = load_learner(Path('./models/model_3.pkl'))
     learn0.dls.transform = tfms
     
     pred_mask,_,_=learn0.predict(picture)
